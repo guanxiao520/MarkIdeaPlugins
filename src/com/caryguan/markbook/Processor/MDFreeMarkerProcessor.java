@@ -6,8 +6,7 @@ import freemarker.cache.StringTemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 
-import java.io.IOException;
-import java.io.Writer;
+import java.io.*;
 import java.util.HashMap;
 
 /**
@@ -37,7 +36,11 @@ public class MDFreeMarkerProcessor extends AbstractFreeMarkProcessor {
     }
 
     @Override
-    protected Writer getWriter(SourceNoteData sourceNoteData) {
-        return null;
+    protected Writer getWriter(SourceNoteData sourceNoteData) throws FileNotFoundException,
+            UnsupportedEncodingException {
+        String fileName = sourceNoteData.fileName();
+        File file = new File(fileName);
+        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "utf-8"));
+        return bufferedWriter;
     }
 }

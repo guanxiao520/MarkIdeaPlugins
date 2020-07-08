@@ -2,7 +2,9 @@ package com.caryguan.markbook.Processor;
 
 import freemarker.template.Template;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 
 /**
@@ -20,7 +22,7 @@ public abstract class AbstractFreeMarkProcessor implements Processor {
 
     protected abstract Template getTemplate() throws IOException;
 
-    protected abstract Writer getWriter(SourceNoteData sourceNoteData);
+    protected abstract Writer getWriter(SourceNoteData sourceNoteData) throws FileNotFoundException, UnsupportedEncodingException;
     //标准确定定义为final不能被复写
     @Override
     public final void process(SourceNoteData sourceNoteData) throws Exception {
