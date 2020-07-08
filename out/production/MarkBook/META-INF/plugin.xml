@@ -1,0 +1,39 @@
+<idea-plugin>
+    <id>com.caryguan.markboook.id</id>
+    <name>MyMarkBook</name>
+    <version>1.0</version>
+    <vendor email="caryguan@163.com" url="http://caryguan.club">caryguan</vendor>
+
+    <description><![CDATA[
+     这是一款帮助我们在阅读代码或文档时添加笔记和注释,并能快速将笔记生成文档的插件<br>
+      <em>MarkDown文档</em>
+    ]]></description>
+
+    <change-notes><![CDATA[
+     第一版,包含笔记添加和文档生成的主体功能<br>
+      <em>仅支持生成Markdown格式的笔记</em>
+    ]]>
+    </change-notes>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+    <idea-version since-build="173.0"/>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+        <toolWindow id="notewindow" factoryClass="com.caryguan.window.NoteListWindowFactory" anchor="right">
+        </toolWindow>
+    </extensions>
+
+    <actions><!-- Add your actions here -->
+        <action id="PopupAction_ID" class="com.caryguan.markbook.action.PopupAction" text="添加MMb笔记"
+                description="添加笔记到MMB">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="ctrl I"/>
+        </action>
+    </actions>
+
+</idea-plugin>
