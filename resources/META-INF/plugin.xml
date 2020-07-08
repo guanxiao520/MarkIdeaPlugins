@@ -24,8 +24,7 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
-        <toolWindow id="notewindow" factoryClass="com.caryguan.window.NoteListWindowFactory" anchor="right"
-                    icon="/img/logo.png">
+        <toolWindow id="notewindow" factoryClass="com.caryguan.window.NoteListWindowFactory" anchor="right">
         </toolWindow>
     </extensions>
 

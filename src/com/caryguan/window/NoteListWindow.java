@@ -1,15 +1,15 @@
 package com.caryguan.window;
 
+import com.caryguan.markbook.Processor.DefaultSourceNoteData;
+import com.caryguan.markbook.Processor.MDFreeMarkerProcessor;
 import com.caryguan.markbook.data.DataCenter;
 import com.intellij.openapi.fileChooser.FileChooser;
-import com.intellij.openapi.fileChooser.FileChooserDescriptor;
+
 import com.intellij.openapi.fileChooser.FileChooserDescriptorFactory;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.MessageDialogBuilder;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.openapi.wm.ToolWindow;
-import com.intellij.util.messages.Topic;
-import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -60,6 +60,12 @@ public class NoteListWindow {
                     String path = virtualFile.getPath();
                     //设置window下文件路径
                     String fileFullPath = path + "/" + fileName;
+                    MDFreeMarkerProcessor processor = new MDFreeMarkerProcessor();
+                    try {
+                        processor.process(new DefaultSourceNoteData(fileFullPath, topic, DataCenter.NOTE_LIST));
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
                 }
 
             }
@@ -67,13 +73,14 @@ public class NoteListWindow {
         btnClear.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                //清空文件
+                DataCenter.reset();
             }
         });
         btnClose.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                toolWindow.hide(null);
             }
         });
     }
